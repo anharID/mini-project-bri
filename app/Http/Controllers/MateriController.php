@@ -14,7 +14,8 @@ class MateriController extends Controller
      */
     public function index()
     {
-        //
+        $materials = Materi::all();
+        return view('data-materi.index', compact('materials'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MateriController extends Controller
      */
     public function create()
     {
-        //
+        return view('data-materi.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class MateriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'materi' => 'required|string|max:255'
+        ]);
+
+        Materi::create($validatedData);
+
+        return redirect()->route('data-materi.index')->with('success', "Materi telah ditambahkan");
     }
 
     /**
@@ -55,9 +62,13 @@ class MateriController extends Controller
      * @param  \App\Models\Materi  $materi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Materi $materi)
+    public function edit(Materi $data_materi)
     {
-        //
+        // dd($data_materi);
+        return view(
+            'data-materi.edit',
+            compact('data_materi')
+        );
     }
 
     /**
@@ -67,9 +78,15 @@ class MateriController extends Controller
      * @param  \App\Models\Materi  $materi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Materi $materi)
+    public function update(Request $request, Materi $data_materi)
     {
-        //
+        $validatedData = $request->validate([
+            'materi' => 'required|string|max:255'
+        ]);
+
+        Materi::where('id', $data_materi->id)->update($validatedData);
+
+        return redirect()->route('data-materi.index')->with('success', "Materi telah diperbarui");
     }
 
     /**
@@ -78,8 +95,11 @@ class MateriController extends Controller
      * @param  \App\Models\Materi  $materi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Materi $materi)
+    public function destroy(Materi $data_materi)
     {
-        //
+        // dd($data_materi);
+        $data_materi->delete();
+
+        return redirect()->route('data-materi.index')->with('success', "Materi telah dihapus");
     }
 }

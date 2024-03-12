@@ -14,7 +14,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $kelas = Kelas::all();
+        return view('data-kelas.index', compact('kelas'));
     }
 
     /**
@@ -24,7 +25,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('data-kelas.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_kelas' => 'required|string|max:255',
+            'jurusan' => 'required|string|max:255',
+            'tingkat' => 'required|string|max:255',
+            'fakultas' => 'required|string|max:255'
+        ]);
+
+        Kelas::create($validatedData);
+
+        return redirect()->route('data-kelas.index')->with('success', "Kelas telah ditambahkan");
     }
 
     /**
@@ -44,7 +54,7 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(Kelas $kelas)
+    public function show(Kelas $data_kela)
     {
         //
     }
@@ -55,9 +65,9 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit(Kelas $data_kela)
     {
-        //
+        return view('data-kelas.edit', compact('data_kela'));
     }
 
     /**
@@ -67,9 +77,18 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, Kelas $data_kela)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_kelas' => 'required|string|max:255',
+            'jurusan' => 'required|string|max:255',
+            'tingkat' => 'required|string|max:255',
+            'fakultas' => 'required|string|max:255'
+        ]);
+
+        Kelas::where('id', $data_kela->id)->update($validatedData);
+
+        return redirect()->route('data-kelas.index')->with('success', "Kelas telah diperbarui");
     }
 
     /**
@@ -78,8 +97,10 @@ class KelasController extends Controller
      * @param  \App\Models\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy(Kelas $data_kela)
     {
-        //
+        $data_kela->delete();
+
+        return redirect()->route('data-kelas.index')->with('success', "Kelas telah dihapus");
     }
 }

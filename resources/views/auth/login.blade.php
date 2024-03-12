@@ -34,9 +34,9 @@
                 Me</label>
         </div>
     </div>
-    <a href="index.html" class="btn btn-primary btn-user btn-block">
+    <button class="btn btn-primary btn-user btn-block" type="submit">
         Login
-    </a>
+    </button>
 </form>
 <hr>
 @if (Route::has('password.request'))

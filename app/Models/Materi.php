@@ -10,4 +10,5 @@ class Materi extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $table = 'materials';
 }
