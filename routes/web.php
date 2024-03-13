@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\AsistenController;
+use App\Http\Controllers\CodeController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +21,10 @@ use App\Http\Controllers\AsistenController;
 
 Route::redirect('/', '/dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::post('/check_in', [DashboardController::class, 'check_in'])->name('check_in')->middleware('auth');
+Route::post('/check_out/{id}', [DashboardController::class, 'check_out'])->name('check_out')->middleware('auth');
+Route::post('/generate_code', [CodeController::class, 'store'])->name('generate_code')->middleware('auth');
 
 Auth::routes();
 

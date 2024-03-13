@@ -15,12 +15,13 @@ class CreatePresencesTable extends Migration
     {
         Schema::create('presences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_code')->constrained('codes');
-            $table->string('traching_role');
-            $table->date('date');
+            $table->foreignId('id_code')->constrained('codes')->onDelete('cascade');
+            $table->foreignId('id_class')->constrained('classes')->onDelete('cascade');
+            $table->foreignId('id_material')->constrained('materials')->onDelete('cascade');
+            $table->string('teaching_role');
             $table->time('start_time');
-            $table->time('end_time');
-            $table->integer('duration');
+            $table->time('end_time')->nullable();
+            $table->integer('duration')->nullable();
             $table->timestamps();
         });
     }

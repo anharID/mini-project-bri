@@ -15,8 +15,9 @@ class CreateCodesTable extends Migration
     {
         Schema::create('codes', function (Blueprint $table) {
             $table->id();
-            $table->integer('code_created_by');
-            $table->integer('code_used_by')->nullable();
+            $table->string('code');
+            $table->foreignId('id_coder')->constrained('users')->onDelete('cascade');
+            $table->foreignId('id_code_user')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

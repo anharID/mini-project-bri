@@ -14,3 +14,5 @@
 
 <!-- Page level custom scripts -->
 <script src="{{ asset('template/js/demo/datatables-demo.js') }}"></script>
+
+@yield('script')
