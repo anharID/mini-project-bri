@@ -15,7 +15,12 @@ class Code extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_coder');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(User::class, 'id_code_user');
     }
 
     public function presensi()

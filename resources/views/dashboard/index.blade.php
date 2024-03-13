@@ -58,6 +58,7 @@
                             <li>Code yang diguakan: {{ $presensi->code->code }}</li>
                             <li>Kelas: {{ $presensi->kelas->nama_kelas }}</li>
                             <li>Materi: {{ $presensi->materi->materi }}</li>
+                            <li>Tanggal: {{ $presensi->date }}</li>
                             <li>Waktu Check IN: {{ $presensi->start_time }} WIB</li>
                         </ul>
                 </div>

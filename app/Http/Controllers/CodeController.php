@@ -11,7 +11,8 @@ class CodeController extends Controller
 {
     public function index()
     {
-        //
+        $codes = Code::latest()->get();
+        return view('data-code.index', compact('codes'));
     }
 
     public function store()

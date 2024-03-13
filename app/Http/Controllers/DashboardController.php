@@ -39,28 +39,32 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         $code = Code::where('code', $request->code)->first();
-
-        $today = Carbon::now()->timezone('Asia/Jakarta');
+        $today = Carbon::now();
         // dd($code);
 
         // dd($today);
 
-        if ($code->id_coder !== $user->id) {
-            Presensi::create([
-                'id_code' => $code->id,
-                'id_class' => $request->kelas,
-                'id_material' => $request->materi,
-                'teaching_role' => $request->teaching_role,
-                'start_time' => $today,
-            ]);
+        if ($code) {
+            if ($code->id_coder !== $user->id) {
+                Presensi::create([
+                    'id_code' => $code->id,
+                    'id_class' => $request->kelas,
+                    'id_material' => $request->materi,
+                    'teaching_role' => $request->teaching_role,
+                    'date' => $today,
+                    'start_time' => $today
+                ]);
 
-            Code::where('id', $code->id)->update([
-                'id_code_user' => $user->id
-            ]);
+                Code::where('id', $code->id)->update([
+                    'id_code_user' => $user->id
+                ]);
 
-            return redirect()->back()->with('check', 'Berhasil Check IN');
+                return redirect()->back()->with('check', 'Berhasil Check IN');
+            } else {
+                return redirect()->back()->with('error', 'Anda harus memasukkan Kode dari Admin, Staf, atau PJ. Tidak bisa menggunakan kode yang di generate sendiri');
+            }
         } else {
-            return redirect()->back()->with('error', 'Anda harus memasukkan code dari Admin, Staf, atau PJ');
+            return redirect()->back()->with('error', 'Kode tidak valid. Silahkan hubungi Admin, Staf, atau PJ lain untuk generate kode.');
         }
     }
 

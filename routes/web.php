@@ -24,6 +24,8 @@ Route::redirect('/', '/dashboard');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::post('/check_in', [DashboardController::class, 'check_in'])->name('check_in')->middleware('auth');
 Route::post('/check_out/{id}', [DashboardController::class, 'check_out'])->name('check_out')->middleware('auth');
+
+Route::get('/codes', [CodeController::class, 'index'])->name('codes')->middleware('auth');
 Route::post('/generate_code', [CodeController::class, 'store'])->name('generate_code')->middleware('auth');
 
 Auth::routes();

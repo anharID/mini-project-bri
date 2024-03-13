@@ -19,6 +19,7 @@ class CreatePresencesTable extends Migration
             $table->foreignId('id_class')->constrained('classes')->onDelete('cascade');
             $table->foreignId('id_material')->constrained('materials')->onDelete('cascade');
             $table->string('teaching_role');
+            $table->date('date');
             $table->time('start_time');
             $table->time('end_time')->nullable();
             $table->integer('duration')->nullable();
