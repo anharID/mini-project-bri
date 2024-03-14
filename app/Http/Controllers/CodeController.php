@@ -11,8 +11,15 @@ class CodeController extends Controller
 {
     public function index()
     {
-        $codes = Code::latest()->get();
-        return view('data-code.index', compact('codes'));
+        $user = Auth::user();
+
+        if ($user->role === 'pj') {
+            $codes = Code::where('id_coder', $user->id)->get();
+            return view('data-code.index', compact('codes'));
+        } else {
+            $codes = Code::latest()->get();
+            return view('data-code.index', compact('codes'));
+        }
     }
 
     public function store()

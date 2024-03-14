@@ -7,6 +7,8 @@ use App\Http\Controllers\MateriController;
 use App\Http\Controllers\AsistenController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\PresensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +21,24 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
+Auth::routes();
+
 Route::redirect('/', '/dashboard');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::post('/check_in', [DashboardController::class, 'check_in'])->name('check_in')->middleware('auth');
 Route::post('/check_out/{id}', [DashboardController::class, 'check_out'])->name('check_out')->middleware('auth');
 
-Route::get('/codes', [CodeController::class, 'index'])->name('codes')->middleware('auth');
-Route::post('/generate_code', [CodeController::class, 'store'])->name('generate_code')->middleware('auth');
+Route::get('/codes', [CodeController::class, 'index'])->name('codes')->middleware('role:admin,staf,pj');
+Route::post('/generate_code', [CodeController::class, 'store'])->name('generate_code')->middleware('role:admin,staf,pj');
 
-Auth::routes();
+Route::get('/report-presensi', [PresensiController::class, 'report'])->name('report')->middleware('role:admin,staf');
+Route::get('/riwayat-presensi', [PresensiController::class, 'riwayat'])->name('riwayat')->middleware('auth');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/export', [ExcelController::class, 'export'])->name('export')->middleware('role:admin,staf');
 
-Route::resource('/data-asisten', AsistenController::class)->middleware('auth');
-Route::resource('/data-kelas', KelasController::class)->middleware('auth');
-Route::resource('/data-materi', MateriController::class)->middleware('auth');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('/data-asisten', AsistenController::class)->middleware('role:admin,staf');
+Route::resource('/data-kelas', KelasController::class)->middleware('role:admin,staf');
+Route::resource('/data-materi', MateriController::class)->middleware('role:admin,staf');

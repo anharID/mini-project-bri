@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Lab ABC</div>
+        <div class="sidebar-brand-text mx-3">Lab IT</div>
     </a>
 
     <!-- Divider -->
@@ -23,6 +23,7 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
+    @can('admin-staf')
     <div class="sidebar-heading">
         MASTER
     </div>
@@ -46,7 +47,9 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    @endcan
 
+    @can('admin-staf-pj')
     <!-- Heading -->
     <div class="sidebar-heading">
         MENU
@@ -66,6 +69,7 @@
             </div>
         </div>
     </li>
+    @endcan
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -77,8 +81,10 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Report:</h6>
-                <a class="collapse-item" href="">Riwayat Code</a>
-                <a class="collapse-item" href="">Riwayat Absen</a>
+                @can('admin-staf')
+                <a class="collapse-item" href="{{ route('report') }}">Report Presensi</a>
+                @endcan
+                <a class="collapse-item" href="{{ route('riwayat') }}">Riwayat Presensi</a>
             </div>
         </div>
     </li>

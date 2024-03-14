@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('container')
-<h1 class="h3 mb-2 text-gray-800">Data Kelas</h1>
+<h1 class="h3 mb-2 text-gray-800">Code Generator</h1>
 
 @if (session()->has('success'))
 <div class="alert alert-success" role="alert">
@@ -35,8 +35,10 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $code->code }}</td>
-                        <td>{{ $code->user->name }}</td>
-                        <td>{{ $code->status ? 'Sudah Dipakai' : 'Belum Dipakai' }}</td>
+                        <td>{{ $code->createdBy->name }}</td>
+                        <td><span
+                                class="{{ $code->usedBy ? 'badge bg-success text-light' : 'badge bg-secondary text-light' }}">{{
+                                $code->usedBy ? 'Sudah Dipakai' : 'Belum Dipakai' }}</span></td>
 
                     </tr>
                     @endforeach

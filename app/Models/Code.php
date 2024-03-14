@@ -13,18 +13,18 @@ class Code extends Model
 
     protected $guarded = ['id'];
 
-    public function user()
+    public function createdBy()
     {
         return $this->belongsTo(User::class, 'id_coder');
     }
 
-    public function status()
+    public function usedBy()
     {
         return $this->belongsTo(User::class, 'id_code_user');
     }
 
     public function presensi()
     {
-        return $this->hasMany(Presensi::class);
+        return $this->hasMany(Presensi::class, 'id_code');
     }
 }

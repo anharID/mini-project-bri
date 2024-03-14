@@ -2,6 +2,7 @@
 
 @section('container')
 <div class="row">
+    @can('admin-staf-pj')
     <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -32,6 +33,8 @@
             </div>
         </div>
     </div>
+    @endcan
+
     <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
