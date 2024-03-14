@@ -14,7 +14,7 @@
         <h6 class="m-0 font-weight-bold text-primary">Report</h6>
     </div>
     <div class="card-body">
-        <a href="{{ route('export') }}" class="btn btn-success btn-icon-split mb-4">
+        <a href="{{ route('export_report') }}" class="btn btn-success btn-icon-split mb-4">
             <span class="icon text-white-50">
                 <i class="fas fa-download"></i>
             </span>

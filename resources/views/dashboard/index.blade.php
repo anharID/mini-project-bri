@@ -41,7 +41,10 @@
                 <h6 class="m-0 font-weight-bold text-primary">{{ $presensi ? 'Status Presensi' : 'Form Presensi' }}</h6>
             </div>
             <div class="card-body">
-                <div id="clock"></div>
+                <div class="text-center">
+                    <h1 id="jam" class="display-1"></h1>
+                    <h1 id="tanggal" class="display-6"></h1>
+                </div>
 
                 @if (session()->has('error'))
                 <div class="alert alert-danger" role="alert">
@@ -143,6 +146,14 @@
 @endsection
 
 @section('script')
+<script>
+    setInterval(() => {
+      const now = moment();
+      const formattedTime = now.format('HH:mm:ss');
+      const formattedDate = now.format('dddd, DD MMMM YYYY');
 
-
+      document.getElementById('jam').innerHTML = formattedTime;
+      document.getElementById('tanggal').innerHTML = formattedDate;
+    }, 1000);
+</script>
 @endsection

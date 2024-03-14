@@ -35,7 +35,7 @@ Route::post('/generate_code', [CodeController::class, 'store'])->name('generate_
 Route::get('/report-presensi', [PresensiController::class, 'report'])->name('report')->middleware('role:admin,staf');
 Route::get('/riwayat-presensi', [PresensiController::class, 'riwayat'])->name('riwayat')->middleware('auth');
 
-Route::get('/export', [ExcelController::class, 'export'])->name('export')->middleware('role:admin,staf');
+Route::get('/export_report', [ExcelController::class, 'export_report'])->name('export_report')->middleware('role:admin,staf');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
