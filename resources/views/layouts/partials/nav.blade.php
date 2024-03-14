@@ -13,8 +13,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('dashboard') }}">
+    <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
+        <a class="nav-link " href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -29,8 +29,9 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+    <li
+        class="nav-item {{ request()->is('data-asisten*') || request()->is('data-kelas*') || request()->is('data-materi*')  ? 'active' : '' }}">
+        <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>Data</span>
@@ -38,7 +39,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data:</h6>
-                <a class="collapse-item" href="{{ route('data-asisten.index') }}">Data Asisten</a>
+                <a class="collapse-item " href="{{ route('data-asisten.index') }}">Data Asisten</a>
                 <a class="collapse-item" href="{{ route('data-kelas.index') }}">Data Kelas</a>
                 <a class="collapse-item" href="{{ route('data-materi.index') }}">Data Materi</a>
             </div>
@@ -56,7 +57,7 @@
     </div>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is('codes') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
@@ -72,7 +73,7 @@
     @endcan
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item {{ request()->is('report-presensi') ||request()->is('riwayat-presensi') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
