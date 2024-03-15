@@ -59,7 +59,7 @@ class DashboardController extends Controller
                     'id_code_user' => $user->id
                 ]);
 
-                return redirect()->back()->with('check', 'Berhasil Check IN');
+                return redirect()->back()->with('check', 'Berhasil Clock IN');
             } else {
                 return redirect()->back()->with('error', 'Anda harus memasukkan Kode dari Admin, Staf, atau PJ. Tidak bisa menggunakan kode yang di generate sendiri');
             }
@@ -84,6 +84,6 @@ class DashboardController extends Controller
 
         ]);
 
-        return redirect()->back()->with('check', 'Berhasil Check OUT');
+        return redirect()->back()->with('check', 'Berhasil Clock OUT');
     }
 }

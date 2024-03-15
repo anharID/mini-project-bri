@@ -65,13 +65,13 @@
                             <li>Kelas: {{ $presensi->kelas->nama_kelas }}</li>
                             <li>Materi: {{ $presensi->materi->materi }}</li>
                             <li>Tanggal: {{ $presensi->date }}</li>
-                            <li>Waktu Check IN: {{ $presensi->start_time }} WIB</li>
+                            <li>Waktu Clock IN: {{ $presensi->start_time }} WIB</li>
                         </ul>
                 </div>
                 <form action="{{ route('check_out', ['id'=>$presensi->id]) }}" method="post">
                     @csrf
                     <div class="mt-5">
-                        <button type="submit" class="btn btn-primary btn-user btn-block">Check OUT</button>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Clock OUT</button>
                     </div>
                 </form>
                 @else
@@ -135,7 +135,7 @@
                         @enderror
                     </div>
                     <div class="mt-5">
-                        <button type="submit" class="btn btn-primary btn-user btn-block">Check IN</button>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Clock IN</button>
                     </div>
                 </form>
                 @endif
