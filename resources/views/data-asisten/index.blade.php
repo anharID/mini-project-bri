@@ -43,6 +43,7 @@
                                 class="btn btn-warning btn-circle btn-sm">
                                 <i class="fas fa-edit"></i>
                             </a>
+                            @if (Auth::user()->id !== $user->id )
                             <form action="{{ route('data-asisten.destroy', $user->id) }}" method="post"
                                 class="d-inline">
                                 @method('delete')
@@ -51,8 +52,8 @@
                                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                     <i class="fas fa-trash"></i>
                                 </button>
-
                             </form>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

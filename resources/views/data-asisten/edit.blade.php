@@ -46,6 +46,7 @@
                 <input name="role" type="hidden" class="form-control @error('role') is-invalid @enderror">
                 <select name="role" class="form-control form-select">
                     <option disabled>Pilih Role</option>
+                    <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
                     <option value="staf" {{ $user->role == 'staf' ? 'selected' : '' }}>Staf</option>
                     <option value="pj" {{ $user->role == 'pj' ? 'selected' : '' }}>PJ</option>
                     <option value="asisten" {{ $user->role == 'asisten' ? 'selected' : '' }}>Asisten</option>

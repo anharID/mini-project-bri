@@ -25,6 +25,6 @@ class Code extends Model
 
     public function presensi()
     {
-        return $this->hasMany(Presensi::class, 'id_code');
+        return $this->hasOne(Presensi::class, 'id_code');
     }
 }

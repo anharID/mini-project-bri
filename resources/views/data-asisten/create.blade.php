@@ -46,6 +46,7 @@
                 <input name="role" type="hidden" class="form-control @error('role') is-invalid @enderror">
                 <select name="role" class="form-control form-select">
                     <option disabled selected>Pilih Role</option>
+                    <option value="admin">Admin</option>
                     <option value="staf">Staf</option>
                     <option value="pj">PJ</option>
                     <option value="asisten">Asisten</option>
